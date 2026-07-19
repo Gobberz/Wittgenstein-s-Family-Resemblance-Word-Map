@@ -1,5 +1,7 @@
 # Family Resemblance Word Map
 
+![Dashboard example](https://github.com/Gobberz/Wittgenstein-s-Family-Resemblance-Word-Map/blob/main/Screenshot%202026-07-19%20140745.png)
+
 Local research dashboard for exploring Wittgenstein's idea of family resemblance: abstract words do not have one fixed essence, but form networks of overlapping contextual uses.
 
 The project runs locally and does not use third-party APIs. It can work with a text corpus, pasted text, and clearly marked locally generated auto-contexts.
@@ -35,11 +37,6 @@ Open:
 http://127.0.0.1:8787/
 ```
 
-In Codex's bundled runtime, the command can be:
-
-```powershell
-& "C:\Users\Shaim\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" scripts/dashboard.py
-```
 
 ## Dashboard Preview
 
