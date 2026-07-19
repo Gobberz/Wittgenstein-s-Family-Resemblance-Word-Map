@@ -1,6 +1,7 @@
 # Family Resemblance Atlas
 
-![Dashboard example](docs/images/dashboard-example.png)
+![Dashboard example]([docs/images/dashboard-example.png](https://github.com/Gobberz/Wittgenstein-s-Family-Resemblance-Word-Map/blob/main/Screenshot%202026-07-19%20140745.png))
+
 Local research dashboard for exploring Wittgenstein's idea of family resemblance: abstract words do not have one fixed essence, but form networks of overlapping contextual uses.
 
 The project runs locally and does not use third-party APIs. It can work with a text corpus, pasted text, and clearly marked locally generated auto-contexts.
