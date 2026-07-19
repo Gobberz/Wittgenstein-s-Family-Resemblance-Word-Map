@@ -35,11 +35,6 @@ Open:
 http://127.0.0.1:8787/
 ```
 
-In Codex's bundled runtime, the command can be:
-
-```powershell
-& "C:\Users\Shaim\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" scripts/dashboard.py
-```
 
 ## Dashboard Workflow
 
