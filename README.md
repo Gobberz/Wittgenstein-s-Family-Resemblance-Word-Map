@@ -41,6 +41,10 @@ In Codex's bundled runtime, the command can be:
 & "C:\Users\Shaim\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" scripts/dashboard.py
 ```
 
+## Dashboard Preview
+
+![Family Resemblance Dashboard example](docs/images/dashboard-example.png)
+
 ## Dashboard Workflow
 
 1. Enter a word, for example `игра`, `справедливость`, `борьба`, or any other word.
