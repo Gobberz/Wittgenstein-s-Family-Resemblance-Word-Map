@@ -19,7 +19,7 @@ from family_resemblance.text import Document
 
 
 DASHBOARD_HTML = """<!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -332,8 +332,14 @@ DASHBOARD_HTML = """<!doctype html>
       font-size: 12px;
       color: var(--muted);
     }
+    @media (max-width: 1360px) {
+      header { grid-template-columns: 1fr; align-items: start; }
+      .query {
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
     @media (max-width: 1100px) {
-      header { grid-template-columns: 1fr; }
       .query, .paste-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 860px) {
@@ -349,36 +355,36 @@ DASHBOARD_HTML = """<!doctype html>
     <header>
       <div>
         <h1>Family Resemblance Dashboard</h1>
-        <div class="subtitle">локальное исследование контекстов слов</div>
+        <div class="subtitle">local research into word contexts</div>
       </div>
       <form class="query" id="queryForm">
-        <label>Слово
-          <input id="wordInput" value="игра" autocomplete="off">
+        <label>Word
+          <input id="wordInput" value="game" autocomplete="off">
         </label>
-        <label>Корпус
+        <label>Corpus
           <input id="corpusInput" value="data/sample_corpus" autocomplete="off">
         </label>
-        <label>Совпадение
+        <label>Matching
           <select id="matchMode">
             <option value="exact">exact</option>
             <option value="lemma-lite" selected>lemma-lite</option>
             <option value="prefix">prefix</option>
           </select>
         </label>
-        <label>Мин. кластер
+        <label>Min. Cluster
           <input id="minClusterSize" type="number" min="2" max="50" value="3">
         </label>
-        <label>Источник
-          <span class="toggle"><input id="autoContext" type="checkbox" checked> авто</span>
+        <label>Source
+          <span class="toggle"><input id="autoContext" type="checkbox" checked> auto</span>
         </label>
-        <button class="primary" id="analyzeButton" type="submit">Анализ</button>
+        <button class="primary" id="analyzeButton" type="submit">Analyze</button>
       </form>
     </header>
     <section class="paste-panel">
-      <label>Вставить текст
-        <textarea id="pastedText" placeholder="Можно вставить сюда статью, фрагмент книги, форумную ветку или юридический текст."></textarea>
+      <label>Paste Text
+        <textarea id="pastedText" placeholder="Paste an article, book excerpt, forum thread, legal fragment, or any other text here."></textarea>
       </label>
-      <label>Домен текста
+      <label>Text Domain
         <input id="pastedDomain" value="pasted" autocomplete="off">
       </label>
     </section>
@@ -390,16 +396,16 @@ DASHBOARD_HTML = """<!doctype html>
       </section>
       <aside>
         <div class="toolbar">
-          <label>Найденное слово<select id="wordSelect"></select></label>
-          <label>Домен<select id="domainSelect"></select></label>
-          <button class="icon" id="downloadJson" title="Скачать JSON" type="button">⇩</button>
+          <label>Found Word<select id="wordSelect"></select></label>
+          <label>Domain<select id="domainSelect"></select></label>
+          <button class="icon" id="downloadJson" title="Download JSON" type="button">&#8681;</button>
         </div>
-        <div id="notice" class="notice">Введите слово, которое встречается в выбранном локальном корпусе.</div>
+        <div id="notice" class="notice">Enter a word that appears in the selected local corpus.</div>
         <div id="evidenceList"></div>
         <div class="metric-grid" id="metrics"></div>
-        <div class="section-title">Кластеры</div>
+        <div class="section-title">Clusters</div>
         <div class="cluster-list" id="clusterList"></div>
-        <div class="section-title">Контекст</div>
+        <div class="section-title">Context</div>
         <div class="selected" id="selectedPoint"></div>
       </aside>
     </main>
@@ -422,8 +428,8 @@ DASHBOARD_HTML = """<!doctype html>
     function clearResult(message, isError = false) {
       atlas = null;
       state = { word: null, domain: 'all', cluster: 'all', selectedId: null, hoverId: null };
-      fillSelect('wordSelect', [['', 'нет результата']], '');
-      fillSelect('domainSelect', [['all', 'все']], 'all');
+      fillSelect('wordSelect', [['', 'no result']], '');
+      fillSelect('domainSelect', [['all', 'all']], 'all');
       document.getElementById('metrics').innerHTML = '';
       document.getElementById('clusterList').innerHTML = '';
       document.getElementById('evidenceList').innerHTML = '';
@@ -437,7 +443,7 @@ DASHBOARD_HTML = """<!doctype html>
     async function analyze() {
       const button = document.getElementById('analyzeButton');
       button.disabled = true;
-      setNotice('Анализ выполняется...');
+      setNotice('Analysis is running...');
       try {
         const payload = {
           words: document.getElementById('wordInput').value,
@@ -455,7 +461,7 @@ DASHBOARD_HTML = """<!doctype html>
         });
         const data = await response.json();
         if (!response.ok) {
-          clearResult(data.error || 'Ошибка анализа', true);
+          clearResult(data.error || 'Analysis error', true);
           return;
         }
         atlas = data;
@@ -464,10 +470,10 @@ DASHBOARD_HTML = """<!doctype html>
         refresh();
         const missing = atlas.metadata.missing || [];
         if (missing.length) {
-          setNotice('Нет употреблений: ' + missing.map(item => item.word).join(', '), true);
+          setNotice('No occurrences: ' + missing.map(item => item.word).join(', '), true);
         } else {
           const evidence = atlas.metadata.evidence[state.word] || {};
-          setNotice('Контекстов: ' + atlas.points.length + ' · доказательность: ' + (evidence.label || atlas.metadata.sourceMode) + ' · режим: ' + atlas.metadata.matchMode);
+          setNotice('Contexts: ' + atlas.points.length + ' | evidence: ' + (evidence.label || atlas.metadata.sourceMode) + ' | mode: ' + atlas.metadata.matchMode);
         }
       } catch (error) {
         clearResult(error.message, true);
@@ -584,7 +590,7 @@ DASHBOARD_HTML = """<!doctype html>
 
     function updateDomainControl() {
       const domains = [...new Set(pointsForWord().map(point => point.domain))].sort();
-      fillSelect('domainSelect', [['all', 'все'], ...domains.map(domain => [domain, domain])], state.domain);
+      fillSelect('domainSelect', [['all', 'all'], ...domains.map(domain => [domain, domain])], state.domain);
     }
 
     function fillSelect(id, options, selected) {
@@ -723,7 +729,7 @@ DASHBOARD_HTML = """<!doctype html>
         tooltip.style.left = event.clientX - mapArea.getBoundingClientRect().left + 'px';
         tooltip.style.top = event.clientY - mapArea.getBoundingClientRect().top + 'px';
         tooltip.style.display = 'block';
-        tooltip.innerHTML = `<strong>${point.word}</strong> · ${point.domain} · ${escapeHtml(point.clusterName || (point.cluster < 0 ? 'noise' : 'cluster ' + point.cluster))}<br>${escapeHtml(point.sentence)}`;
+        tooltip.innerHTML = `<strong>${point.word}</strong> | ${point.domain} | ${escapeHtml(point.clusterName || (point.cluster < 0 ? 'noise' : 'cluster ' + point.cluster))}<br>${escapeHtml(point.sentence)}`;
       } else {
         tooltip.style.display = 'none';
       }
@@ -786,7 +792,7 @@ def pasted_documents(text: str, domain: str) -> list[Document]:
     text = text.strip()
     if not text:
         return []
-    clean_domain = re.sub(r"[^0-9A-Za-zА-Яа-яЁё_-]+", "_", domain.strip() or "pasted")
+    clean_domain = re.sub(r"[^0-9A-Za-z\u0401\u0451\u0410-\u044f_-]+", "_", domain.strip() or "pasted")
     clean_domain = clean_domain.strip("_") or "pasted"
     return [
         Document(
@@ -834,9 +840,9 @@ def make_handler(cache: ModelCache):
                 )
                 min_cluster_size = int(payload.get("minClusterSize", cache.base_config.min_cluster_size))
                 if match_mode not in {"exact", "prefix", "lemma-lite"}:
-                    raise ValueError("Неподдерживаемый режим совпадения.")
+                    raise ValueError("Unsupported matching mode.")
                 if min_cluster_size < 2:
-                    raise ValueError("Минимальный размер кластера должен быть не меньше 2.")
+                    raise ValueError("Minimum cluster size must be at least 2.")
 
                 model = cache.get(corpus)
                 atlas = model.analyze(

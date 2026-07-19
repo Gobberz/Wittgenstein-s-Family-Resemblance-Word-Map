@@ -1,4 +1,4 @@
-# Family Resemblance Atlas
+# Family Resemblance Word Map
 
 Local research dashboard for exploring Wittgenstein's idea of family resemblance: abstract words do not have one fixed essence, but form networks of overlapping contextual uses.
 
@@ -6,8 +6,8 @@ The project runs locally and does not use third-party APIs. It can work with a t
 
 ## Features
 
-- Analyze any word from the dashboard.
-- Paste text directly into the dashboard without creating files.
+- Analyze any word directly from the dashboard.
+- Paste text into the dashboard without creating corpus files.
 - Build contextual occurrence vectors with local PPMI + SVD and lexical-hash context features.
 - Cluster meanings with a NumPy density algorithm inspired by HDBSCAN mutual reachability.
 - Project contexts to a 2D semantic map with a local UMAP-like spectral layout.
@@ -43,18 +43,18 @@ In Codex's bundled runtime, the command can be:
 
 ## Dashboard Preview
 
-![Family Resemblance Dashboard example](docs/images/dashboard-example.png)
+![Family Resemblance Dashboard example](docs/images/dashboard-example.svg)
 
 ## Dashboard Workflow
 
-1. Enter a word, for example `игра`, `справедливость`, `борьба`, or any other word.
-2. Optionally paste your own text into `Вставить текст`.
+1. Enter a word, for example `game`, `justice`, `knot`, `struggle`, or any other word.
+2. Optionally paste your own text into `Paste Text`.
 3. Choose a matching mode:
    - `lemma-lite` - default lightweight local form matching.
    - `exact` - exact token form only.
    - `prefix` - prefix matching.
-4. Keep `авто` enabled if you want the dashboard to create local auto-contexts when there are too few real contexts.
-5. Click `Анализ`.
+4. Keep `auto` enabled if you want the dashboard to create local auto-contexts when there are too few real contexts.
+5. Click `Analyze`.
 
 The map will show contextual uses as points. Colors represent density clusters. Grey/noise points are bridges or outliers.
 
@@ -75,7 +75,7 @@ This distinction matters: synthetic-only maps are useful for exploration, but st
 Generate a static HTML/JSON report:
 
 ```powershell
-python scripts/build_atlas.py --targets игра справедливость узел --match-mode lemma-lite --auto-contexts
+python scripts/build_atlas.py --targets game justice knot --match-mode lemma-lite --auto-contexts
 ```
 
 Outputs are written to `outputs/`:

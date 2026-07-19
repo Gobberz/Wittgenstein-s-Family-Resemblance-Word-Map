@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+  <title id="title">Family Resemblance Dashboard preview</title>
+  <desc id="desc">English dashboard preview showing controls, a semantic point map, evidence metrics, clusters, and a selected context.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#dfe6e2" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#202623" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .bg { fill: #f7f9f8; }
+      .panel { fill: #fff; stroke: #dce2df; }
+      .ink { fill: #202623; font-family: Inter, Segoe UI, Arial, sans-serif; }
+      .muted { fill: #6c7672; font-family: Inter, Segoe UI, Arial, sans-serif; }
+      .small { font-size: 13px; }
+      .label { font-size: 12px; }
+      .title { font-size: 30px; font-weight: 800; }
+      .metric { font-size: 26px; font-weight: 800; }
+      .button { fill: #202623; }
+      .button-text { fill: #fff; font-family: Inter, Segoe UI, Arial, sans-serif; font-size: 15px; font-weight: 800; }
+      .chip { fill: #fff; stroke: #dce2df; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1400" height="820"/>
+
+  <rect x="0" y="0" width="1400" height="154" fill="#fff" stroke="#dce2df"/>
+  <text x="24" y="42" class="ink title">Family Resemblance Dashboard</text>
+  <text x="24" y="68" class="muted small">local research into word contexts</text>
+
+  <g transform="translate(24 92)">
+    <text class="muted label" x="0" y="-10">Word</text>
+    <rect class="panel" x="0" y="0" width="270" height="40" rx="7"/>
+    <text class="ink small" x="13" y="25">game</text>
+
+    <text class="muted label" x="294" y="-10">Corpus</text>
+    <rect class="panel" x="294" y="0" width="330" height="40" rx="7"/>
+    <text class="ink small" x="307" y="25">data/sample_corpus</text>
+
+    <text class="muted label" x="648" y="-10">Matching</text>
+    <rect class="panel" x="648" y="0" width="180" height="40" rx="7"/>
+    <text class="ink small" x="661" y="25">lemma-lite</text>
+
+    <text class="muted label" x="852" y="-10">Min. Cluster</text>
+    <rect class="panel" x="852" y="0" width="140" height="40" rx="7"/>
+    <text class="ink small" x="865" y="25">3</text>
+
+    <text class="muted label" x="1016" y="-10">Source</text>
+    <rect class="panel" x="1016" y="0" width="138" height="40" rx="7"/>
+    <rect x="1030" y="12" width="16" height="16" rx="3" fill="#2a9d8f"/>
+    <text class="button-text" x="1033" y="26" font-size="14">&#10003;</text>
+    <text class="ink small" x="1056" y="25">auto</text>
+
+    <rect class="button" x="1178" y="0" width="174" height="40" rx="7"/>
+    <text class="button-text" x="1233" y="25">Analyze</text>
+  </g>
+
+  <rect x="0" y="154" width="1400" height="88" fill="#fff" stroke="#dce2df"/>
+  <text x="24" y="184" class="muted label">Paste Text</text>
+  <rect class="panel" x="24" y="194" width="1110" height="40" rx="7"/>
+  <text x="38" y="219" class="muted small">Paste an article, book excerpt, forum thread, legal fragment, or any other text here.</text>
+  <text x="1160" y="184" class="muted label">Text Domain</text>
+  <rect class="panel" x="1160" y="194" width="192" height="40" rx="7"/>
+  <text x="1173" y="219" class="ink small">pasted</text>
+
+  <rect x="0" y="242" width="982" height="578" fill="url(#grid)" stroke="#dce2df"/>
+  <g opacity="0.95">
+    <circle cx="315" cy="330" r="5" fill="#e76f51"/>
+    <circle cx="230" cy="410" r="5" fill="#e76f51"/>
+    <circle cx="405" cy="505" r="5" fill="#e76f51"/>
+    <circle cx="130" cy="505" r="5" fill="#9aa3a0"/>
+    <circle cx="275" cy="562" r="5" fill="#9aa3a0"/>
+    <circle cx="535" cy="505" r="5" fill="#9aa3a0"/>
+    <circle cx="568" cy="560" r="5" fill="#2a9d8f"/>
+    <circle cx="662" cy="490" r="5" fill="#2a9d8f"/>
+    <circle cx="760" cy="520" r="5" fill="#457b9d"/>
+    <circle cx="858" cy="535" r="5" fill="#457b9d"/>
+    <circle cx="912" cy="545" r="5" fill="#457b9d"/>
+    <circle cx="390" cy="700" r="7" fill="#2a9d8f" stroke="#202623" stroke-width="2"/>
+    <circle cx="330" cy="760" r="5" fill="#2a9d8f"/>
+    <circle cx="444" cy="776" r="5" fill="#2a9d8f"/>
+    <circle cx="552" cy="690" r="5" fill="#9aa3a0"/>
+    <circle cx="890" cy="630" r="5" fill="#2a9d8f"/>
+    <circle cx="922" cy="610" r="5" fill="#9aa3a0"/>
+  </g>
+  <path d="M482 622 h24 M494 610 v24" stroke="#a7b0ac" stroke-width="1"/>
+
+  <g transform="translate(18 786)">
+    <rect class="chip" x="0" y="0" width="82" height="28" rx="14"/>
+    <circle cx="18" cy="14" r="6" fill="#9aa3a0"/>
+    <text x="31" y="19" class="muted small">bridges</text>
+    <rect class="chip" x="94" y="0" width="156" height="28" rx="14"/>
+    <circle cx="112" cy="14" r="6" fill="#2a9d8f"/>
+    <text x="125" y="19" class="muted small">not / does / became</text>
+    <rect class="chip" x="264" y="0" width="172" height="28" rx="14"/>
+    <circle cx="282" cy="14" r="6" fill="#e76f51"/>
+    <text x="295" y="19" class="muted small">where / strategies / theory</text>
+  </g>
+
+  <rect x="982" y="242" width="418" height="578" fill="#fff" stroke="#dce2df"/>
+  <g transform="translate(1006 276)">
+    <text class="muted label" x="0" y="0">Found Word</text>
+    <text class="muted label" x="160" y="0">Domain</text>
+    <rect class="panel" x="0" y="12" width="145" height="40" rx="7"/>
+    <text class="ink small" x="14" y="37">game</text>
+    <rect class="panel" x="160" y="12" width="145" height="40" rx="7"/>
+    <text class="ink small" x="174" y="37">all</text>
+    <rect class="panel" x="318" y="12" width="42" height="40" rx="7"/>
+    <text class="ink small" x="334" y="37">&#8681;</text>
+
+    <rect class="panel" x="0" y="72" width="360" height="58" rx="8"/>
+    <text class="muted small" x="14" y="98">Contexts: 22 | evidence: corpus evidence | mode:</text>
+    <text class="muted small" x="14" y="116">lemma-lite</text>
+
+    <rect class="panel" x="0" y="146" width="360" height="68" rx="8"/>
+    <text class="ink small" x="14" y="170" font-weight="800">corpus evidence</text>
+    <rect class="chip" x="14" y="182" width="76" height="24" rx="12"/>
+    <text class="muted label" x="26" y="198">corpus 22</text>
+    <rect class="chip" x="96" y="182" width="66" height="24" rx="12"/>
+    <text class="muted label" x="108" y="198">pasted 0</text>
+    <rect class="chip" x="168" y="182" width="58" height="24" rx="12"/>
+    <text class="muted label" x="182" y="198">auto 0</text>
+
+    <g transform="translate(0 232)">
+      <rect class="panel" x="0" y="0" width="170" height="76" rx="8"/>
+      <text class="muted label" x="12" y="23">anti-essence</text>
+      <text class="ink metric" x="12" y="55">0.69</text>
+      <rect class="panel" x="184" y="0" width="176" height="76" rx="8"/>
+      <text class="muted label" x="196" y="23">clusters</text>
+      <text class="ink metric" x="196" y="55">3</text>
+      <rect class="panel" x="0" y="90" width="170" height="76" rx="8"/>
+      <text class="muted label" x="12" y="113">medoid</text>
+      <text class="ink metric" x="12" y="145">0.30</text>
+      <rect class="panel" x="184" y="90" width="176" height="76" rx="8"/>
+      <text class="muted label" x="196" y="113">diameter</text>
+      <text class="ink metric" x="196" y="145">2.00</text>
+      <rect class="panel" x="0" y="180" width="170" height="76" rx="8"/>
+      <text class="muted label" x="12" y="203">noise</text>
+      <text class="ink metric" x="12" y="235">36%</text>
+      <rect class="panel" x="184" y="180" width="176" height="76" rx="8"/>
+      <text class="muted label" x="196" y="203">contexts</text>
+      <text class="ink metric" x="196" y="235">22</text>
+    </g>
+
+    <text class="muted label" x="0" y="520">CLUSTERS</text>
+    <rect class="panel" x="0" y="534" width="360" height="45" rx="8"/>
+    <circle cx="16" cy="556" r="6" fill="#9aa3a0"/>
+    <text class="ink small" x="30" y="552">bridges / outliers</text>
+    <text class="muted label" x="30" y="568">but, rules, his, violin</text>
+    <text class="ink small" x="342" y="562" font-weight="800">8</text>
+  </g>
+</svg>

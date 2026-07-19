@@ -34,7 +34,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build a local Family Resemblance atlas.")
     parser.add_argument("--corpus", type=Path, default=ROOT / "data" / "sample_corpus")
     parser.add_argument("--out", type=Path, default=ROOT / "outputs")
-    parser.add_argument("--targets", nargs="+", default=["игра", "справедливость", "узел"])
+    parser.add_argument("--targets", nargs="+", default=["game", "justice", "knot"])
     parser.add_argument("--embedding-dim", type=int, default=48)
     parser.add_argument("--max-vocab", type=int, default=5000)
     parser.add_argument("--min-count", type=int, default=1)

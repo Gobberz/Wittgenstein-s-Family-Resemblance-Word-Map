@@ -1,19 +1,19 @@
-В теории игр игра описывает ситуацию, где несколько агентов выбирают стратегии и получают выигрыш в зависимости от совместного исхода. Такая игра не обязательно является развлечением: это математическая модель конфликта и кооперации.
+In game theory, a game describes a situation where several agents choose strategies and receive payoffs depending on a shared outcome. Such a game is not necessarily entertainment: it can be a mathematical model of conflict and cooperation.
 
-Компьютерная игра может служить экспериментальной средой для обучения агента с подкреплением. Исследователь меняет правила, наблюдает поведение модели и проверяет, как стратегия возникает из повторяющихся попыток.
+A computer game can serve as an experimental environment for training a reinforcement learning agent. The researcher changes the rules, observes model behavior, and tests how strategy emerges from repeated attempts.
 
-В физике слово игра иногда появляется метафорически: говорят об игре сил, когда несколько взаимодействий создают неочевидный результат. Здесь игра означает не соревнование, а динамику взаимного влияния.
+In physics, the word game sometimes appears metaphorically: researchers speak of the play of forces when several interactions create a non-obvious result. Here game means a dynamic pattern of mutual influence rather than a contest.
 
-Алгоритмическая справедливость требует, чтобы модель не ухудшала решение для группы только потому, что в данных была историческая асимметрия. В таком контексте справедливость становится измеримой характеристикой распределения ошибок.
+Algorithmic justice requires a model not to harm a group simply because historical asymmetry is present in the data. In this context, justice becomes a measurable property of error distributions.
 
-В статистике справедливость процедуры связывают с несмещенностью оценки. Если метод систематически дает преимущество одному классу наблюдений, исследователь говорит о нарушении справедливости.
+In statistics, the justice of a procedure is linked to unbiased estimation. If a method systematically benefits one class of observations, the researcher can describe that as a violation of justice.
 
-Философы науки спорят, является ли справедливость внешней моральной нормой или внутренним требованием к надежному знанию. В лабораторной практике справедливость проявляется как прозрачность доступа к данным и методам.
+Philosophers of science debate whether justice is an external moral norm or an internal requirement for reliable knowledge. In laboratory practice, justice appears as transparent access to data and methods.
 
-В графе узел представляет объект, а ребро обозначает отношение между объектами. Центральный узел может соединять несколько сообществ и менять поток информации во всей сети.
+In a graph, a knot can refer to a tightly connected point where several relations meet. A central knot can connect communities and change the flow of information across the whole network.
 
-В нейронной сети узел получает входные значения, умножает их на веса и передает сигнал дальше. Такой узел не похож на морской узел, но сохраняет идею соединения и передачи.
+In a neural network, a node receives input values, multiplies them by weights, and passes a signal onward. This computational knot is unlike a rope knot, but it preserves the idea of connection and transfer.
 
-Лимфатический узел фильтрует жидкость и участвует в иммунном ответе. В медицинской статье слово узел означает анатомическую структуру, а не точку в абстрактной сети.
+A lymphatic node filters fluid and participates in the immune response. In a medical article, this kind of knot means an anatomical structure rather than a point in an abstract network.
 
-При анализе сложных систем исследователь ищет узел, через который проходят многие зависимости. Иногда этот узел оказывается не главным центром, а временной точкой согласования процессов.
+When analyzing complex systems, a researcher looks for a knot through which many dependencies pass. Sometimes this knot is not the main center, but a temporary coordination point among processes.

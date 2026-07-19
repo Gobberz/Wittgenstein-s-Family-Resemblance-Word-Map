@@ -5,13 +5,24 @@ from pathlib import Path
 import re
 
 
-TOKEN_RE = re.compile(r"[A-Za-zА-Яа-яЁё]+(?:[-'][A-Za-zА-Яа-яЁё]+)?|\d+(?:[.,]\d+)?")
+CYRILLIC_LETTERS = r"\u0401\u0451\u0410-\u044f"
+TOKEN_RE = re.compile(rf"[A-Za-z{CYRILLIC_LETTERS}]+(?:[-'][A-Za-z{CYRILLIC_LETTERS}]+)?|\d+(?:[.,]\d+)?")
 SENTENCE_RE = re.compile(r"(?<=[.!?;:])\s+|\n+")
 
+CYRILLIC_STOPWORDS = {
+    "\u0430", "\u0431\u0435\u0437", "\u0431\u044b", "\u0432", "\u0432\u043e",
+    "\u0434\u043b\u044f", "\u0434\u043e", "\u0435\u0433\u043e", "\u0435\u0435",
+    "\u0435\u0441\u043b\u0438", "\u0436\u0435", "\u0437\u0430", "\u0438",
+    "\u0438\u0437", "\u0438\u043b\u0438", "\u043a\u0430\u043a", "\u043a",
+    "\u043a\u043e", "\u043b\u0438", "\u043d\u0430", "\u043d\u0435",
+    "\u043d\u043e", "\u043e", "\u043e\u0431", "\u043e\u0442", "\u043f\u043e",
+    "\u043f\u0440\u0438", "\u0441", "\u0441\u043e", "\u0442\u0430\u043a",
+    "\u0442\u043e", "\u0443", "\u0447\u0442\u043e", "\u044d\u0442\u043e",
+    "\u044d\u0442\u043e\u0442",
+}
+
 STOPWORDS = {
-    "а", "без", "бы", "в", "во", "для", "до", "его", "ее", "если", "же", "за",
-    "и", "из", "или", "как", "к", "ко", "ли", "на", "не", "но", "о", "об",
-    "от", "по", "при", "с", "со", "так", "то", "у", "что", "это", "этот",
+    *CYRILLIC_STOPWORDS,
     "the", "a", "an", "and", "or", "of", "in", "to", "for", "with", "is",
 }
 
@@ -42,7 +53,7 @@ class Occurrence:
 
 
 def normalize_token(token: str) -> str:
-    return token.lower().replace("ё", "е")
+    return token.lower().replace("\u0451", "\u0435")
 
 
 def tokenize(text: str) -> list[str]:
@@ -153,16 +164,22 @@ def rough_stem(token: str) -> str:
     if len(token) <= 4:
         return token
 
-    russian_endings = (
-        "иями", "ями", "ами", "ого", "ему", "ими", "ыми", "ией", "ость",
-        "остью", "иями", "иях", "иях", "ию", "ью", "ия", "ие", "ых", "их",
-        "ой", "ий", "ый", "ая", "ое", "ые", "ую", "юю", "ом", "ем", "ах",
-        "ях", "ам", "ям", "ов", "ев", "а", "я", "ы", "и", "у", "ю", "е",
-        "о", "ь",
+    cyrillic_endings = (
+        "\u0438\u044f\u043c\u0438", "\u044f\u043c\u0438", "\u0430\u043c\u0438",
+        "\u043e\u0433\u043e", "\u0435\u043c\u0443", "\u0438\u043c\u0438",
+        "\u044b\u043c\u0438", "\u0438\u0435\u0439", "\u043e\u0441\u0442\u044c",
+        "\u043e\u0441\u0442\u044c\u044e", "\u0438\u044f\u0445", "\u0438\u044e",
+        "\u044c\u044e", "\u0438\u044f", "\u0438\u0435", "\u044b\u0445",
+        "\u0438\u0445", "\u043e\u0439", "\u0438\u0439", "\u044b\u0439",
+        "\u0430\u044f", "\u043e\u0435", "\u044b\u0435", "\u0443\u044e",
+        "\u044e\u044e", "\u043e\u043c", "\u0435\u043c", "\u0430\u0445",
+        "\u044f\u0445", "\u0430\u043c", "\u044f\u043c", "\u043e\u0432",
+        "\u0435\u0432", "\u0430", "\u044f", "\u044b", "\u0438", "\u0443",
+        "\u044e", "\u0435", "\u043e", "\u044c",
     )
     english_endings = ("ingly", "edly", "ing", "ed", "ness", "tion", "s")
 
-    for ending in russian_endings + english_endings:
+    for ending in cyrillic_endings + english_endings:
         if token.endswith(ending) and len(token) - len(ending) >= 3:
             return token[: -len(ending)]
     return token

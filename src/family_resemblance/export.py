@@ -22,7 +22,7 @@ def render_report(atlas: dict) -> str:
     lines = [
         "# Family Resemblance Analysis",
         "",
-        "Локальный отчет по гипотезе: абстрактное слово не имеет одного центрального значения, если его употребления образуют несколько плотностей, переходные зоны и слабый медоид.",
+        "Local report for the hypothesis that an abstract word lacks a single central meaning when its uses form multiple densities, transition zones, and a weak medoid.",
         "",
         "| word | occurrences | clusters | noise | medoid dominance | semantic diameter | anti-essence |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
@@ -38,9 +38,9 @@ def render_report(atlas: dict) -> str:
     lines.extend(
         [
             "",
-            "Интерпретация: высокий anti-essence score не является философским доказательством в строгом смысле, но является проверяемым математическим свидетельством против модели одного центра.",
+            "Interpretation: a high anti-essence score is not a strict philosophical proof, but it is testable mathematical evidence against a single-center meaning model.",
             "",
-            "Метод: локальное самообучение PPMI+SVD с lexical-hash признаками контекста, UMAP-подобное спектральное вложение, density clustering в стиле HDBSCAN.",
+            "Method: local PPMI+SVD self-training with lexical-hash context features, UMAP-like spectral embedding, and HDBSCAN-style density clustering.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -49,7 +49,7 @@ def render_report(atlas: dict) -> str:
 def render_html(json_text: str) -> str:
     escaped_json = html.escape(json_text, quote=False)
     return f"""<!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -277,13 +277,13 @@ def render_html(json_text: str) -> str:
     <header>
       <div>
         <h1>Family Resemblance Atlas</h1>
-        <div class="subtitle">локальная карта контекстов без внешних API</div>
+        <div class="subtitle">local context map without external APIs</div>
       </div>
       <div class="controls">
-        <label>Слово<select id="wordSelect"></select></label>
-        <label>Домен<select id="domainSelect"></select></label>
-        <label>Кластер<select id="clusterSelect"></select></label>
-        <button id="resetView" title="Сбросить выбор">↺</button>
+        <label>Word<select id="wordSelect"></select></label>
+        <label>Domain<select id="domainSelect"></select></label>
+        <label>Cluster<select id="clusterSelect"></select></label>
+        <button id="resetView" title="Reset selection">&#8634;</button>
       </div>
     </header>
     <main>
@@ -294,9 +294,9 @@ def render_html(json_text: str) -> str:
       </section>
       <aside>
         <div class="metric-grid" id="metrics"></div>
-        <div class="section-title">Кластеры</div>
+        <div class="section-title">Clusters</div>
         <div class="cluster-list" id="clusterList"></div>
-        <div class="section-title">Контекст</div>
+        <div class="section-title">Context</div>
         <div class="selected" id="selectedPoint"></div>
       </aside>
     </main>
@@ -415,12 +415,12 @@ def render_html(json_text: str) -> str:
 
     function updateDomainControl() {{
       const domains = [...new Set(pointsForWord().map(point => point.domain))].sort();
-      fillSelect('domainSelect', [['all', 'все'], ...domains.map(domain => [domain, domain])], state.domain);
+      fillSelect('domainSelect', [['all', 'all'], ...domains.map(domain => [domain, domain])], state.domain);
     }}
 
     function updateClusterControl() {{
       const clusters = [...new Set(pointsForWord().map(point => point.cluster))].sort((a, b) => a - b);
-      const options = [['all', 'все'], ...clusters.map(cluster => [String(cluster), cluster < 0 ? 'noise' : 'cluster ' + cluster])];
+      const options = [['all', 'all'], ...clusters.map(cluster => [String(cluster), cluster < 0 ? 'noise' : 'cluster ' + cluster])];
       fillSelect('clusterSelect', options, state.cluster);
     }}
 
@@ -539,7 +539,7 @@ def render_html(json_text: str) -> str:
         tooltip.style.left = event.clientX - mapArea.getBoundingClientRect().left + 'px';
         tooltip.style.top = event.clientY - mapArea.getBoundingClientRect().top + 'px';
         tooltip.style.display = 'block';
-        tooltip.innerHTML = `<strong>${{point.word}}</strong> · ${{point.domain}} · ${{point.cluster < 0 ? 'noise' : 'cluster ' + point.cluster}}<br>${{escapeHtml(point.sentence)}}`;
+        tooltip.innerHTML = `<strong>${{point.word}}</strong> | ${{point.domain}} | ${{point.cluster < 0 ? 'noise' : 'cluster ' + point.cluster}}<br>${{escapeHtml(point.sentence)}}`;
       }} else {{
         tooltip.style.display = 'none';
       }}

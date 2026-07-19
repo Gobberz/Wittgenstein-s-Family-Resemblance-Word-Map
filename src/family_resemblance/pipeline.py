@@ -22,7 +22,7 @@ from .text import (
 @dataclass(frozen=True)
 class AtlasConfig:
     corpus: Path
-    targets: tuple[str, ...] = ("игра", "справедливость", "узел")
+    targets: tuple[str, ...] = ("game", "justice", "knot")
     embedding_dim: int = 48
     max_vocab: int = 5000
     min_count: int = 1
@@ -75,7 +75,7 @@ class CorpusModel:
     ) -> dict:
         normalized_targets = tuple(normalize_token(target) for target in targets if target.strip())
         if not normalized_targets:
-            raise ValueError("Введите хотя бы одно слово.")
+            raise ValueError("Enter at least one word.")
 
         active_match_mode = match_mode or self.config.match_mode
         active_allow_synthetic = self.config.allow_synthetic if allow_synthetic is None else allow_synthetic
@@ -123,11 +123,11 @@ class CorpusModel:
         if not occurrences:
             first = normalized_targets[0]
             suggestions = suggest_targets(self.documents, first, limit=8)
-            suggestion_text = ", ".join(str(item["word"]) for item in suggestions) or "нет похожих слов"
+            suggestion_text = ", ".join(str(item["word"]) for item in suggestions) or "no similar words"
             raise ValueError(
-                f"В выбранном корпусе нет контекстов для '{first}'. "
-                f"Добавьте .txt тексты с этим словом или выберите слово из корпуса. "
-                f"Подсказки: {suggestion_text}."
+                f"The selected corpus has no contexts for '{first}'. "
+                f"Add .txt texts containing this word or choose a word from the corpus. "
+                f"Suggestions: {suggestion_text}."
             )
 
         vectors = occurrence_vectors(
@@ -195,7 +195,7 @@ class CorpusModel:
 
         found_words = [target for target in normalized_targets if metrics_by_word[target]["occurrences"] > 0]
         if not found_words:
-            raise ValueError("В корпусе нет употреблений для выбранных слов.")
+            raise ValueError("The corpus has no occurrences for the selected words.")
 
         domains = sorted({document.domain for document in base_documents})
         synthetic_summary = [
