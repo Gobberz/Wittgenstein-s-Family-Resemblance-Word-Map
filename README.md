@@ -1,5 +1,6 @@
 # Family Resemblance Atlas
 
+![Dashboard example](docs/images/dashboard-example.png)
 Local research dashboard for exploring Wittgenstein's idea of family resemblance: abstract words do not have one fixed essence, but form networks of overlapping contextual uses.
 
 The project runs locally and does not use third-party APIs. It can work with a text corpus, pasted text, and clearly marked locally generated auto-contexts.
